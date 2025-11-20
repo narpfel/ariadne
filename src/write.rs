@@ -273,7 +273,7 @@ impl<S: Span> Report<'_, S> {
             let line_ref = format!("{src_name}:{line_no}:{col_no}");
             writeln!(
                 w,
-                "{}{}{}{} {} {}",
+                "{}{}{}{}{}{}",
                 Show((' ', line_no_width + 2)),
                 if group_idx == 0 {
                     draw.ltop
@@ -1061,7 +1061,7 @@ mod tests {
         );
         assert_snapshot!(msg, @r###"
         Error: can't compare apples with oranges
-           ,-[ <unknown>:1:1 ]
+           ,-[<unknown>:1:1]
            |
          1 | apple == orange;
            | ^^^^^    ^^^^^^
@@ -1083,7 +1083,7 @@ mod tests {
         );
         assert_snapshot!(msg, @r###"
         Error: can't compare apples with oranges
-           ,-[ <unknown>:1:1 ]
+           ,-[<unknown>:1:1]
            |
          1 | apple
            | ^^^^^
@@ -1108,7 +1108,7 @@ mod tests {
         // TODO: it would be nice if these lines didn't cross
         assert_snapshot!(msg, @r###"
         Error: can't compare apples with oranges
-           ,-[ <unknown>:1:1 ]
+           ,-[<unknown>:1:1]
            |
          1 | apple == orange;
            | ^^|^^    ^^^|^^
@@ -1133,7 +1133,7 @@ mod tests {
         );
         assert_snapshot!(msg, @r###"
         Error: can't compare apples with oranges
-           ,-[ <unknown>:1:1 ]
+           ,-[<unknown>:1:1]
            |
          1 | apple ==
            | ^^|^^
@@ -1160,7 +1160,7 @@ mod tests {
         // TODO: it would be nice if these lines didn't cross
         assert_snapshot!(msg, @r###"
         Error: can't compare äpplës with örängës
-           ,-[ <unknown>:1:1 ]
+           ,-[<unknown>:1:1]
            |
          1 | äpplë == örängë;
            | ^^|^^    ^^^|^^
@@ -1186,7 +1186,7 @@ mod tests {
         // TODO: it would be nice if these lines didn't cross
         assert_snapshot!(msg, @r###"
         Error: can't compare äpplës with örängës
-           ,-[ <unknown>:1:1 ]
+           ,-[<unknown>:1:1]
            |
          1 | äpplë == örängë;
            | ^^|^^    ^^^|^^
@@ -1212,7 +1212,7 @@ mod tests {
         // TODO: it would be nice if these lines didn't cross
         assert_snapshot!(msg, @r###"
         Error: can't compare äpplës with örängës
-           ,-[ <unknown>:1:10 ]
+           ,-[<unknown>:1:10]
            |
          1 | äpplë == örängë;
            | ^^|^^    ^^^|^^
@@ -1239,7 +1239,7 @@ mod tests {
         // TODO: it would be nice if the start of long lines would be omitted (like rustc does)
         assert_snapshot!(msg, @r###"
         Error: can't compare apples with oranges
-           ,-[ <unknown>:1:1 ]
+           ,-[<unknown>:1:1]
            |
          1 | apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == apple == orange
            |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ^^|^^
@@ -1262,7 +1262,7 @@ mod tests {
 
         assert_snapshot!(msg, @r###"
         Error: unexpected end of file
-           ,-[ <unknown>:1:1 ]
+           ,-[<unknown>:1:1]
            |
          1 | apple ==
            |          |
@@ -1285,7 +1285,7 @@ mod tests {
 
         assert_snapshot!(msg, @r###"
         Error: unexpected end of file
-           ,-[ <unknown>:1:1 ]
+           ,-[<unknown>:1:1]
            |
          1 |
            | |
@@ -1309,7 +1309,7 @@ mod tests {
 
         assert_snapshot!(msg, @r###"
         Error: unexpected end of file
-           ,-[ <unknown>:1:1 ]
+           ,-[<unknown>:1:1]
            |
          1 |
            | |
@@ -1335,7 +1335,7 @@ mod tests {
 
         assert_snapshot!(msg, @r###"
         Error: unexpected end of file
-           ,-[ <unknown>:1:1 ]
+           ,-[<unknown>:1:1]
            |
          1 |
            | |
@@ -1362,7 +1362,7 @@ mod tests {
 
         assert_snapshot!(msg, @r###"
         Error: unexpected end of file
-           ,-[ <unknown>:1:1 ]
+           ,-[<unknown>:1:1]
            |
          1 |
            | |
@@ -1406,7 +1406,7 @@ mod tests {
         // TODO: it would be nice if the 2nd line wasn't omitted
         assert_snapshot!(msg, @r###"
         Error:
-           ,-[ <unknown>:1:1 ]
+           ,-[<unknown>:1:1]
            |
          1 | ,-> apple
            : :
@@ -1430,7 +1430,7 @@ mod tests {
         // TODO: it would be nice if the 2nd line wasn't omitted
         assert_snapshot!(msg, @r###"
         Error:
-           ,-[ <unknown>:1:1 ]
+           ,-[<unknown>:1:1]
            |
          2 |     banana
          3 | ,-> carrot
@@ -1457,7 +1457,7 @@ mod tests {
         // TODO: it would be nice if you could tell where the spans start and end.
         assert_snapshot!(msg, @r###"
         Error:
-           ,-[ <unknown>:1:1 ]
+           ,-[<unknown>:1:1]
            |
          1 | https://example.com/
            | ^^|^^^^^^^|^^^^^^^^^
@@ -1490,7 +1490,7 @@ mod tests {
         );
         assert_snapshot!(msg, @r###"
         Error: can't compare apples with oranges
-           ,-[ <unknown>:1:1 ]
+           ,-[<unknown>:1:1]
            |
          1 | apple == orange;
            | ^^|^^    ^^^|^^
@@ -1524,7 +1524,7 @@ mod tests {
         );
         assert_snapshot!(msg, @r###"
         Error: can't compare apples with oranges
-           ,-[ <unknown>:1:1 ]
+           ,-[<unknown>:1:1]
            |
          1 | apple == orange;
            | ^^|^^    ^^^|^^
@@ -1552,7 +1552,7 @@ mod tests {
         );
         assert_snapshot!(msg, @r###"
         Error: can't compare apples with oranges
-           ,-[ <unknown>:1:1 ]
+           ,-[<unknown>:1:1]
            |
          1 | apple == orange;
            | ^^|^^    ^^^|^^
@@ -1581,7 +1581,7 @@ mod tests {
         );
         assert_snapshot!(msg, @r###"
         Error: can't compare apples with oranges
-           ,-[ <unknown>:1:1 ]
+           ,-[<unknown>:1:1]
            |
          1 | apple == orange;
            | ^^|^^    ^^^|^^
@@ -1610,7 +1610,7 @@ mod tests {
         );
         assert_snapshot!(msg, @r###"
         Error: can't compare apples with oranges
-           ,-[ <unknown>:1:1 ]
+           ,-[<unknown>:1:1]
            |
          1 | apple == orange;
            | ^^^^^^^|^^^^^^^
@@ -1636,7 +1636,7 @@ mod tests {
         );
         assert_snapshot!(msg, @r###"
         Error: can't compare apples with oranges
-           ,-[ <unknown>:1:1 ]
+           ,-[<unknown>:1:1]
            |
          1 | apple == orange;
            | ^^^^^^^|^^^^^^^
@@ -1664,7 +1664,7 @@ mod tests {
         );
         assert_snapshot!(msg, @r###"
         Error: can't compare apples with oranges
-           ,-[ <unknown>:1:1 ]
+           ,-[<unknown>:1:1]
            |
          1 | apple == orange;
            | ^^^^^^^|^^^^^^^
@@ -1693,7 +1693,7 @@ mod tests {
         );
         assert_snapshot!(msg, @r###"
         Error: can't compare apples with oranges
-           ,-[ <unknown>:1:1 ]
+           ,-[<unknown>:1:1]
            |
          1 | apple == orange;
            | ^^^^^^^|^^^^^^^
@@ -1725,13 +1725,13 @@ mod tests {
         );
         assert_snapshot!(msg, @r###"
         Error:
-           ,-[ b:3:1 ]
+           ,-[b:3:1]
            |
          3 | first
            | ^^|^^
            |   `---- 1
            |
-           |-[ a:1:1 ]
+           |-[a:1:1]
            |
          1 | second
            | ^^^|^^
@@ -1740,7 +1740,7 @@ mod tests {
            | ^^|^^
            |   `---- 3
            |
-           |-[ b:1:1 ]
+           |-[b:1:1]
            |
          1 | fourth
            | ^^^|^^
@@ -1769,7 +1769,7 @@ mod tests {
         eprintln!("{msg}");
         assert_snapshot!(msg, @r###"
         Error: can't compare apples with oranges
-           ,-[ <unknown>:1:1 ]
+           ,-[<unknown>:1:1]
            |
          1 | ,-> begin
          2 | |   apple == orange;
